@@ -31,27 +31,29 @@ class ProdukController extends Controller
 
     public function postkeranjang(Request $request, Produk $produk)
     {
-        if (auth()->user()->role == 'customer') {
-            $request->validate(
-                [
-                    'amount' => 'required'
-                ]
-            );
+        if (auth()->user() == true) {
+            if (auth()->user()->role == 'customer') {
+                $request->validate(
+                    [
+                        'amount' => 'required'
+                    ]
+                );
 
-            DetailTransaksi::create(
-                [
-                    'qty' => $request->amount,
-                    'user_id' => Auth::id(),
-                    'produk_id' => $produk->id,
-                    'status' => 'keranjang',
-                    'totalprice' => $produk->price * $request->amount
-                ]
-            );
+                DetailTransaksi::create(
+                    [
+                        'qty' => $request->amount,
+                        'user_id' => Auth::id(),
+                        'produk_id' => $produk->id,
+                        'status' => 'keranjang',
+                        'totalprice' => $produk->price * $request->amount
+                    ]
+                );
 
-            return redirect()->route('pelanggan.keranjang')->with('status', 'Berhasil Dimasukan Keladam Keranjang');
+                return redirect()->route('pelanggan.keranjang')->with('status', 'Berhasil Dimasukan Keladam Keranjang');
+            }
+            return redirect()->route('admin.produk');
         }
-
-        return redirect()->route('admin.produk');
+        return redirect()->route('login.view');
     }
 
     public function keranjang(Request $request)
