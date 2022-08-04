@@ -31,8 +31,8 @@
                 @foreach ($produk as $item)
                 <tr>
                     <td>
-                        <a href="{{ route('produk.show', $item->id) }}"><img src="{{ asset($item->image) }}" width="150"
-                                height="150" alt=""></a>
+                        <a href="{{ route('produk.show', $item->id) }}"><embed src="{{ asset($item->image) }}"
+                                width="150" height="150" type="" class="rounded-4"></a>
                     </td>
                     <td>{{ $item->name }}</td>
                     <td>Rp. {{ number_format($item->price,0,',','.') }}</td>

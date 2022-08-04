@@ -12,18 +12,21 @@
                     <div class="card-body">
                         <h3 class="card-title text-center">{{ $produk->name }}</h3>
                         @if(auth()->user()->role == 'admin')
-                        <h5>Kategori : {{ $produk->Kategori->name }}</h5>
+                        <h5 class="ps-2">Kategori : {{ $produk->Kategori->name }}</h5>
                         @endif
-                        <p class="card-text">Rp.{{ number_format($produk->price,0,',','.') }}</p>
+                        <p class="card-text p-1 ps-2 rounded-4 bg-warning text-black fw-semibold">Rp.{{
+                            number_format($produk->price,0,',','.') }}</p>
                         @if(auth()->user()->role == 'customer')
                         <input type="number" name="amount" class="form-control rounded-4" placeholder="amount" required
                             id="" class="input-form">
                         @endif
-                        <hr>
-                        <h5>Keterangan : </h5>
+                        <div class="p-1 bg-light pt-3 rounded-4 text-black">
+                            <h5 class="ps-1">Keterangan : </h5>
+                            <p class="ps-1">Ini merupakan ditel dari produk {{ $produk->name }} silahkan bila anda
+                                tertarik untuk membeli
+                                produk ini.</p>
+                        </div>
 
-                        <p>Ini merupakan ditel dari produk {{ $produk->name }} silahkan bila anda tertarik untuk membeli
-                            produk ini.</p>
                     </div>
                 </div>
             </div>
