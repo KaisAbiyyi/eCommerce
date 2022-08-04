@@ -75,9 +75,10 @@ class ProdukAdminController extends Controller
                 'price' => 'required|numeric'
             ]
         );
-
-        if ($request->hasFile('image')) {
+        if (File::exists($produk->image)) {
             unlink($produk->image);
+        }
+        if ($request->hasFile('image')) {
             $data['image'] = $request->image->store('images/produk');
         } else {
             unset($data['image']);
