@@ -8,6 +8,7 @@
                     <img src="{{ asset($produk->image) }}" alt="" class="card-img rounded-5 ">
                 </div>
             </div>
+            @if (auth()->user()==false)
             <div class="col col-md-6 mb-4 col-lg-4">
                 <div class="card border-0 bg-success text-white rounded-5 p-3">
                     <div class="card-body">
@@ -30,6 +31,8 @@
                     </div>
                 </div>
             </div>
+            @endif
+
             @if(auth()->user() == true)
             <div class="col col-md-6 mb-4 col-lg-4">
                 <div class="card border-0 bg-success text-white rounded-5 p-3">
